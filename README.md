@@ -60,21 +60,17 @@ The system uses the **HC-SR04 ultrasonic sensor** to measure distance to obstacl
 
 ## Directory Structure
 
-```plaintext
 /
 ├── firmware/
 │   ├── stm32f407vgt6/
-│   │   └── collision_detection.c
-│   ├── can_bus/
-│   │   └── can_communication.c
+│   │   └── .c
 │   └── esp32/
-│       └── aws_mqtt.c
+│       └── .c
 ├── docs/
-│   └── project_overview.md
+│   └── .pdf
 ├── schematics/
-│   └── circuit_diagram.png
+│   └── .png
 └── README.md
-```
 
 ## License
 

@@ -1,0 +1,4 @@
+DAY1: We configured all connection with CAN and STM32 board and STM32CubeIDE
+DAY2: We wrote code for CAN using APIs (BareMetal Coding) to setup communication between hardware
+DAY3: We configured all connection with UltraSonic sensor and STM32 board and STM32CubeIDE
+DAY4: We wrote code for Sensor to measure distance with time 

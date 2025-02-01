@@ -59,7 +59,7 @@ The system uses the **HC-SR04 ultrasonic sensor** to measure distance to obstacl
 3. Create an **IoT policy** 📜 to allow data publishing.
 
 ## Directory Structure
-
+```plaintext
 /
 ├── firmware/
 │   ├── stm32f407vgt6/
@@ -71,7 +71,7 @@ The system uses the **HC-SR04 ultrasonic sensor** to measure distance to obstacl
 ├── schematics/
 │   └── .png
 └── README.md
-
+```
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 📜

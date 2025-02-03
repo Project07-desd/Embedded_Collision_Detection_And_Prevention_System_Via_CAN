@@ -57,24 +57,3 @@ The system uses the **HC-SR04 ultrasonic sensor** to measure distance to obstacl
 1. Create an **IoT Thing** 🛠️ in **AWS IoT Core**.
 2. Set up **MQTT** 📨 communication.
 3. Create an **IoT policy** 📜 to allow data publishing.
-
-## Directory Structure
-├── firmware/
-│   ├── stm32f407vgt6/
-│   │   └── .c
-│   └── esp32/
-│       └── .c
-├── docs/
-│   └── .pdf
-├── schematics/
-│   └── .png
-└── README.md
-│   │   └── collision_detection.c
-│   ├── can_bus/
-│   │   └── can_communication.c
-│   └── esp32/
-│       └── aws_mqtt.c
-├── docs/
-│   └── project_overview.md
-├── schematics/
-│   └── circuit_diagram.png

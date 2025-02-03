@@ -59,10 +59,15 @@ The system uses the **HC-SR04 ultrasonic sensor** to measure distance to obstacl
 3. Create an **IoT policy** 📜 to allow data publishing.
 
 ## Directory Structure
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 ```plaintext
 /
 ├── firmware/
 │   ├── stm32f407vgt6/
+<<<<<<< HEAD
 │   │   └── .c
 │   └── esp32/
 │       └── .c
@@ -72,6 +77,20 @@ The system uses the **HC-SR04 ultrasonic sensor** to measure distance to obstacl
 │   └── .png
 └── README.md
 ```
+=======
+│   │   └── collision_detection.c
+│   ├── can_bus/
+│   │   └── can_communication.c
+│   └── esp32/
+│       └── aws_mqtt.c
+├── docs/
+│   └── project_overview.md
+├── schematics/
+│   └── circuit_diagram.png
+└── README.md
+```
+
+>>>>>>> origin/master
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 📜

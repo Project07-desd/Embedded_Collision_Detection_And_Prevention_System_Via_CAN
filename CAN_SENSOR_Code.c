@@ -44,6 +44,8 @@ CAN_HandleTypeDef hcan1;
 
 TIM_HandleTypeDef htim2;
 
+UART_HandleTypeDef huart4;
+
 /* USER CODE BEGIN PV */
 uint8_t ubKeyNumber = 0x0;
 CAN_TxHeaderTypeDef   TxHeader;
@@ -63,10 +65,12 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_CAN1_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_UART4_Init(void);
 /* USER CODE BEGIN PFP */
 void CAN_filterConfig(void);
 void LED_Display(uint8_t LedStatus);
 uint32_t hcsr04_read(void);
+void UART_SendData(float distance);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -109,6 +113,7 @@ int main(void)
   MX_GPIO_Init();
   MX_CAN1_Init();
   MX_TIM2_Init();
+  MX_UART4_Init();
   /* USER CODE BEGIN 2 */
 
   HAL_TIM_Base_Start(&htim2);
@@ -162,9 +167,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  }
-  /* USER CODE END 3 */
 
+  /* USER CODE END 3 */
+}
 
 /**
   * @brief System Clock Configuration
@@ -307,6 +312,39 @@ static void MX_TIM2_Init(void)
 }
 
 /**
+  * @brief UART4 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_UART4_Init(void)
+{
+
+  /* USER CODE BEGIN UART4_Init 0 */
+
+  /* USER CODE END UART4_Init 0 */
+
+  /* USER CODE BEGIN UART4_Init 1 */
+
+  /* USER CODE END UART4_Init 1 */
+  huart4.Instance = UART4;
+  huart4.Init.BaudRate = 115200;
+  huart4.Init.WordLength = UART_WORDLENGTH_8B;
+  huart4.Init.StopBits = UART_STOPBITS_1;
+  huart4.Init.Parity = UART_PARITY_NONE;
+  huart4.Init.Mode = UART_MODE_TX_RX;
+  huart4.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart4.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart4) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN UART4_Init 2 */
+
+  /* USER CODE END UART4_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -321,6 +359,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
@@ -389,6 +428,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 
     // Optionally, you can control LEDs based on the distance value
     if (rec_dist < 50.0f) {
+    UART_SendData(rec_dist);
       HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);  // Turn on LED 1
       HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12 | GPIO_PIN_14 | GPIO_PIN_15, GPIO_PIN_RESET);
     } else {
@@ -435,6 +475,13 @@ uint32_t hcsr04_read(void)
 			delay (1);
 		 }
 		return local_time;
+}
+
+void UART_SendData(float distance)
+{
+    char buffer[50];
+    int len = sprintf(buffer, "Distance: %.2f cm\r\n", distance);
+    HAL_UART_Transmit(&huart4, (uint8_t *)buffer, len, HAL_MAX_DELAY);
 }
 
 /* USER CODE END 4 */

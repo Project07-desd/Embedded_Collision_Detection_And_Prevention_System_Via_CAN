@@ -3,3 +3,5 @@ DAY2: We wrote code for CAN using APIs (BareMetal Coding) to setup communication
 DAY3: We configured all connection with UltraSonic sensor and STM32 board and STM32CubeIDE
 DAY4: We wrote code for Sensor to measure distance with time 
 DAY5: We have done communication of CAN with SENSOR (Receive data on STM from SENSOR via CAN)
+DAY6: We configured connection with STM32 to UART and UART to ESP32
+DAY7: We wrote code for receiving data from STM32 to ESP32 

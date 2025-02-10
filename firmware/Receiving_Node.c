@@ -160,6 +160,13 @@ int main(void)
 	  	  HAL_GPIO_WritePin(GPIOE, SPI1_CS_Pin, 1); // CS Pulled High/* USER CODE END WHILE */
 
 	  	 HAL_Delay(100);
+		 
+                 if (Rx_X < -20 || Rx_X > 20)
+	  	 {
+	  		 snprintf(alertMessage, sizeof(alertMessage), "-1" );
+	  		 HAL_UART_Transmit(&huart4, (uint8_t *)alertMessage, strlen(alertMessage), 10);
+	  		 HAL_Delay(1000);
+	  	 }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
